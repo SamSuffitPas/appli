@@ -69,12 +69,6 @@
                 }
                 break;
 
-            //supprimer un produit en base de données
-            case "suppr": 
-                $manager->delete($_GET['id']);
-                MessageService::setMessage("success", "Produit supprimé avec succès !");
-                header("Location:form.php");
-                die;
                 
         }//fin du switch
         //dans le cas où l'action n'a redirigé nulle part

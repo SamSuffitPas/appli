@@ -1,6 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
 html, body{
     margin: 0;
     font-family: 'Josefin Sans', sans-serif;
+}
+
+#wrapper {
+    max-width: 1024px;
+    margin: auto;
 }
 
 #menu{
@@ -12,6 +21,10 @@ html, body{
     padding-bottom: 0.5em;
     border-bottom: 2px solid #ccc;
     text-decoration: none;
+}
+
+#article {
+    text-align: center;
 }
 
 #errors{

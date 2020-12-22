@@ -13,7 +13,7 @@ abstract class RouterService {
     public static function handleRequest($params) :array {
 
         /*-----APPEL DU CONTROLEUR-----*/
-    $class = "Store"; // Contrôleur par défaut
+    $class = ucfirst(DEFAULT_CTRL); // Contrôleur par défaut
     
     if(isset($params['ctrl'])) { // ctrl = admin
         $uri_class = ucfirst($params['ctrl']); // $uri_class = "Admin"
@@ -31,7 +31,7 @@ abstract class RouterService {
     $controller = new $className(); // App\Controller\StoreController
 
 /*-----APPEL DE LA METHODE DANS LE CONTROLEUR-----*/    
-    $method = "indexAction"; // Méthode par défaut
+    $method = DEFAULT_ACTION."Action"; // Méthode par défaut
 
     if(isset($params['action'])) { // action = list
 
@@ -51,5 +51,15 @@ abstract class RouterService {
     }    
     // StoreController::listAction()
     return $controller->$method($id);// Appel de la méthode du contrôleur
+    }
+
+    public function redirect($ctrl = null, $action = null, $id = null) {
+        
+        // Si $ctrl != O alors $ctrl sinon "store";
+        $ctrl = $ctrl ?? DEFAULT_CTRL;
+        $action = $action ?? DEFAULT_ACTION;
+
+        header("Location:index.php?ctrl=$ctrl&action=$action&id=$id");
+        return;
     }
 }
